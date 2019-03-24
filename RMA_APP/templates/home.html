@@ -3,11 +3,12 @@
 {% block header %}
   <h1>{% block title %}Reddit Mood Analyzer{% endblock %}</h1>
 {% endblock %}
-
 {% block content %}
-  <form method="get">
+  {% if g.user %}
+  <form action="/result" method="POST">
     <label for="subredditName">Enter a Subreddit</label>
-    <input name="subredditName" id="subredditName" required>
-    <input type="submit" value="Get Mood">
+    <input id="subredditName" name="subredditName" type="text" required>
+    <input type ="submit" value="submit">
   </form>
+  {% endif %}
 {% endblock %}

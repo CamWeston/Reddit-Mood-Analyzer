@@ -1,0 +1,7 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  {% if g.user %}
+    <h1>{% block title %}/r/{{subredditName}}'s Current Mood{% endblock %}</h1>
+    {% endif %}
+{% endblock %}
