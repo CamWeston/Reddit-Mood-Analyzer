@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+
+{% block header %}
+  <h1>{% block title %}Reddit Mood Analyzer{% endblock %}</h1>
+{% endblock %}
+
+{% block content %}
+  <form method="get">
+    <label for="subredditName">Enter a Subreddit</label>
+    <input name="subredditName" id="subredditName" required>
+    <input type="submit" value="Get Mood">
+  </form>
+{% endblock %}
