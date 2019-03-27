@@ -7,8 +7,11 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from RMA_APP.db import get_db
 
+
+# Blueprint for authorization and authentication
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
+# Register user route
 @bp.route('/register', methods=('GET', 'POST'))
 def register():
     if request.method == 'POST':
@@ -38,6 +41,7 @@ def register():
 
     return render_template('auth/register.html')
 
+# Login user route
 @bp.route('/login', methods=('GET', 'POST'))
 def login():
     if request.method == 'POST':
@@ -63,6 +67,8 @@ def login():
 
     return render_template('auth/login.html')
 
+
+# Checks if user is logged in
 @bp.before_app_request
 def load_logged_in_user():
     user_id = session.get('user_id')
@@ -74,11 +80,14 @@ def load_logged_in_user():
             'SELECT * FROM user WHERE id = ?', (user_id,)
         ).fetchone()
 
+# Logout user route
 @bp.route('/logout')
 def logout():
     session.clear()
     return redirect(url_for('index'))
 
+
+# Defines required view for login_required. Use this view wrap to make a route require login
 def login_required(view):
     @functools.wraps(view)
     def wrapped_view(**kwargs):
