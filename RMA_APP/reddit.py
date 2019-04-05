@@ -31,7 +31,11 @@ def get_text(subreddit_name):
     for submission in submissions:
         if sys.getsizeof(all_text) < 120000:
             all_text += submission.title
-    return all_text
-
+            
+            for comment in submission.comments:
+                if sys.getsizeof(all_text) < 120000:
+                    all_text += comment.body
+                    
+    return all_text[:120000]
 
 
