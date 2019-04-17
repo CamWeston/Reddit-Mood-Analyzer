@@ -1,9 +1,23 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  {% if g.user %}
-    <h1>{% block title %}/r/{{subredditName}}'s Current Mood{% endblock %}</h1>
-    {% endif %}
+<div class ="container">
+  <div class="row">
+    <div class="col s12 center">
+        <h3 id="loadingMessage">{% block title %}Reddit Mood Analyzer{% endblock %}</h3>
+    </div>
+  </div>
+</div>
 {% endblock %}
-
-{% include 'footer.html' %}
+{% block content %}
+  {% if g.user %}
+<div class ="container">
+  <div class="row">
+    <h2>The current moods of r/{{subreddit_name}}</h2>
+    {% for tone in watson_analysis['tones'] %}
+      <h6>{{tone['tone_id']}}</h6>
+    {% endfor %}
+  </div>
+</div>
+  {% endif %}
+{% endblock %}

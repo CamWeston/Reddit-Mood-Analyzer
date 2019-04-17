@@ -5,6 +5,7 @@ from flask import (
 
 from RMA_APP.auth import login_required
 from . import reddit, watson
+import json
 
 
 # Blueprint for main page where user can enter a subreddit
@@ -31,7 +32,9 @@ def analyze():
         text_from_reddit = reddit.get_text(subreddit_name)
 
         # Get Tone Analyzer Results
-        return watson.analyze_tone(text_from_reddit)
+        watson_analysis = json.loads(watson.analyze_tone(text_from_reddit))
+
+        return render_template("result.html", watson_analysis = watson_analysis, subreddit_name=subreddit_name)
 
         # TODO: Return a template with the tones instead of json dump -Cam
 
