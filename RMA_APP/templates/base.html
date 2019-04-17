@@ -1,6 +1,6 @@
 <!doctype html>
+<head>
 <title>{% block title %}{% endblock %} - RMA</title>
-
 <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
 <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
@@ -8,14 +8,16 @@
   src="https://code.jquery.com/jquery-3.4.0.min.js"
   integrity="sha256-BJeo0qm959uMBGb65z40ejJYGSgR7REI4+CW1fNKwOg="
   crossorigin="anonymous"></script>
-<script src="{{ url_for('static', filename='main.js') }}"></script>
+  <script src="{{ url_for('static', filename='main.js') }}"></script>
+</head>
+<body>
 <div class = "container">
 <nav id="nav">
 
   <div class="row">
     <ul>
     <div class ="col s3">
-      <li><img width="40" src="{{ url_for('static', filename='images/reddit.png') }}" id="navIcon"/></li>
+      <li><a href="/" id="navAnchor"><img width="40" src="{{ url_for('static', filename='images/reddit.png') }}" id="navIcon"/></a></li>
     </div>
 
         {% if g.user %}
@@ -45,5 +47,5 @@
   {% endfor %}
   {% block content %}{% endblock %}
 </section>
-<body>
+
 {% include 'footer.html' %}
