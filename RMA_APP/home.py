@@ -4,7 +4,7 @@ from flask import (
 
 
 from RMA_APP.auth import login_required
-from . import reddit, watson
+from . import reddit, watson, azure
 import json
 
 
@@ -31,8 +31,13 @@ def analyze():
         # If valid use praw to get the text of all posts and comments
         text_from_reddit = reddit.get_text(subreddit_name)
 
-        # Get Tone Analyzer Results
+        # Get Tone Analysis from IBM Watson
         watson_analysis = json.loads(watson.analyze_tone(text_from_reddit))
+
+        # Get Tone Analysis from Microsoft Azure
+        azure_analysis = azure.analyze(text_from_reddit)
+
+        print(azure_analysis)
 
         return render_template("result.html", watson_analysis = watson_analysis, subreddit_name=subreddit_name)
 

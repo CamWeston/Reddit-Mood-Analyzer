@@ -14,8 +14,8 @@
 <div class ="container">
   <div class="row">
     <h2>The current moods of r/{{subreddit_name}}</h2>
-    {% for tone in watson_analysis['tones'] %}
-      <h6>{{tone['tone_id']}}</h6>
+    {% for tone in watson_analysis['document_tone']['tones'] %}
+      <h6>{{tone}}</h6>
     {% endfor %}
   </div>
 </div>
