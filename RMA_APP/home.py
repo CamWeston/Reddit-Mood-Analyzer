@@ -34,12 +34,21 @@ def analyze():
         # Get Tone Analysis from IBM Watson
         watson_analysis = json.loads(watson.analyze_tone(text_from_reddit))
 
+
+
         # Get Tone Analysis from Microsoft Azure
         azure_analysis = azure.analyze(text_from_reddit)
 
-        print(azure_analysis)
+        i = 0
+        tones = []
+        for tone in watson_analysis['document_tone']['tones']:
+            tones.append({
+                'tone_id':tone['tone_name'],
+                'score':tone['score']
+            })
 
-        return render_template("result.html", watson_analysis = watson_analysis, subreddit_name=subreddit_name)
 
-        # TODO: Return a template with the tones instead of json dump -Cam
+
+        return render_template("result.html", tones = tones, subreddit_name=subreddit_name)
+
 

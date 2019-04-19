@@ -4,7 +4,7 @@
 <div class ="container">
   <div class="row">
     <div class="col s12 center">
-        <h3 id="loadingMessage">{% block title %}Reddit Mood Analyzer{% endblock %}</h3>
+        <h3 id="loadingMessage">{% block title %}The current moods of r/{{subreddit_name}}{% endblock %}</h3>
     </div>
   </div>
 </div>
@@ -13,11 +13,17 @@
   {% if g.user %}
 <div class ="container">
   <div class="row">
-    <h2>The current moods of r/{{subreddit_name}}</h2>
-    {% for tone in watson_analysis['document_tone']['tones'] %}
-      <h6>{{tone}}</h6>
+    {% for tone in tones %}
+      <div class="col s4">
+        <canvas id="{{tone['tone_id']}}" width="400" heigh="400"></canvas>
+      </div>
     {% endfor %}
   </div>
 </div>
   {% endif %}
+<!-- Js for charts  -->
+<script>
+createCharts({{tones | tojson}});
+</script>
 {% endblock %}
+

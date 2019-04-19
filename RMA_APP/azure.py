@@ -15,7 +15,6 @@ def analyze(text):
             }]
         }
         request_body = json.dumps(request_body)
-        print(request_body)
         headers = {"Ocp-Apim-Subscription-Key": subscription_key}
         response = requests.post(sentiment_api_url, headers=headers, json=request_body)
         return response.json()

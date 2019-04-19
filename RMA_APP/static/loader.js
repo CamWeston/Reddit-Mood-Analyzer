@@ -1,4 +1,5 @@
 $(function() {
+    //Initialize Loading Screen
     $("#loader").hide();
     $("#homeForm").submit(function( event ) {
         $("#homeForm").fadeOut("slow", function(){
@@ -23,5 +24,8 @@ $(function() {
             });
         });
     });
-});
 
+
+
+
+});
