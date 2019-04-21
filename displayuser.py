@@ -6,5 +6,7 @@ c = conn.cursor()
 
 res = c.execute("SELECT * FROM user;")
 
-for user in res:
-	print(user)
+for search in res:
+	print(search)
+
+

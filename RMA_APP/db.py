@@ -45,17 +45,17 @@ user_table = """ CREATE TABLE IF NOT EXISTS user (
     ); """
 
 search_table = """ CREATE TABLE IF NOT EXISTS search (
-    id INTEGER,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT,
-    date DATE,
+    date TEXT,
     subreddit TEXT,
-    anger TEXT,
-    fear TEXT,
-    joy TEXT,
-    sadness TEXT,
-    analytical TEXT,
-    condifent TEXT,
-    tentative TEXT,
+    anger DECIMAL,
+    fear DECIMAL,
+    joy DECIMAL,
+    sadness DECIMAL,
+    analytical DECIMAL,
+    confident DECIMAL,
+    tentative DECIMAL,
     FOREIGN KEY (id) REFERENCES user (id)
     ); """
 

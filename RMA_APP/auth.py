@@ -7,7 +7,8 @@ from werkzeug.security import check_password_hash, generate_password_hash
 
 from RMA_APP.db import get_db
 
-
+# set a global variable for username
+login_user = ""
 # Blueprint for authorization and authentication
 bp = Blueprint('auth', __name__, url_prefix='/auth')
 
@@ -59,6 +60,7 @@ def login():
             error = 'Incorrect password.'
 
         if error is None:
+            login_user = username
             session.clear()
             session['user_id'] = user['id']
             return redirect(url_for('index'))
@@ -97,3 +99,5 @@ def login_required(view):
         return view(**kwargs)
 
     return wrapped_view
+
+
