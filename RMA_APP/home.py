@@ -1,9 +1,9 @@
 from flask import (
-    Blueprint, render_template, request
+    Blueprint, render_template, request, session
 )
 
 
-from RMA_APP.auth import login_required, login_user
+from RMA_APP.auth import login_required
 from . import reddit, watson
 
 from RMA_APP.db import get_db
@@ -21,13 +21,16 @@ bp = Blueprint('main', __name__)
 @bp.route('/')
 @login_required
 def index():
-    return render_template("home.html")
+    if not session.get("username"):
+        return render_template("auth/login.html")
+    else:
+        return render_template("home.html")
 
 
 @bp.route('/result', methods=('GET', 'POST'))
 @login_required
 def analyze():
-    username = login_user
+    username = session["username"]
 
     # If the user submitted a subreddit name
     if request.method == 'POST':
