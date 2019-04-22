@@ -1,5 +1,6 @@
 import requests
 import json
+import re
 from IPython.display import HTML
 
 
@@ -8,13 +9,15 @@ sentiment_api_url = "https://eastus.api.cognitive.microsoft.com/text/analytics/v
 
 
 def analyze(text):
-        request_body = {
+        text = re.sub(r"[^a-zA-Z ,.!?'0-9]", " ", text)
+        text = text[:5100]
+        request_body ={
             "documents" : [{
                 "id" : "1",
                 "text": text
             }]
         }
-        request_body = json.dumps(request_body)
-        headers = {"Ocp-Apim-Subscription-Key": subscription_key}
+        headers = {'Content-Type': 'application/json',"Ocp-Apim-Subscription-Key": subscription_key}
         response = requests.post(sentiment_api_url, headers=headers, json=request_body)
-        return response.json()
+        response = response.text
+        return response

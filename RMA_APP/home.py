@@ -37,7 +37,7 @@ def analyze():
 
 
         # Get Tone Analysis from Microsoft Azure
-        azure_analysis = azure.analyze(text_from_reddit)
+        azure_analysis = json.loads(azure.analyze(text_from_reddit))
 
         i = 0
         tones = []
@@ -47,8 +47,16 @@ def analyze():
                 'score':tone['score']
             })
 
+        k = 0
+        azure_scores = []
+        for tone in azure_analysis['documents']:
+            azure_scores.append({
+                'score_id':tone['id'],
+                'score':tone['score']
+            })
 
 
-        return render_template("result.html", tones = tones, subreddit_name=subreddit_name)
+
+        return render_template("result.html", tones = tones, azure_scores = azure_scores, subreddit_name=subreddit_name)
 
 
