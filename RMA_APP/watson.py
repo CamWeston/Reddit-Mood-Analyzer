@@ -19,4 +19,4 @@ def analyze_tone(text):
     # TODO: This is where the error is
     tone_analysis = tone_analyzer.tone({'text': text}, 'application/json', False).get_result()
 
-    return json.dumps(tone_analysis, indent=4, sort_keys=True)
+    return json.dumps(tone_analysis, indent=2, sort_keys=True)

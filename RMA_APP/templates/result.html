@@ -1,7 +1,42 @@
 {% extends 'base.html' %}
 
 {% block header %}
-  {% if g.user %}
-    <h1>{% block title %}/r/{{subredditName}}'s Current Mood{% endblock %}</h1>
-    {% endif %}
+<div class ="container">
+  <div class="row">
+    <div class="col s12 center">
+        <h3 id="loadingMessage">{% block title %}The current moods of r/{{subreddit_name}}{% endblock %}</h3>
+    </div>
+  </div>
+</div>
 {% endblock %}
+{% block content %}
+  {% if g.user %}
+<div class ="container data-analysis">
+  <div class="row">
+    <div class="col s12">
+      <h4>IBM Watson Analysis:</h4>
+    </div>
+    <div class="col s12">
+      <blockquote id="ibmBQ">Using IBM Watson, we are able to get the mood of the subreddit. If we detect a strong enough presence of a mood, we are able to show it on a scale of 0 to 1.</blockquote>
+    </div>
+
+  </div>
+  <div class="divider"></div>
+  <div class="section">
+    <div class="row">
+    {% for tone in tones %}
+      <div class="col s6">
+        <canvas class = 'watson-pie-chart' id="{{tone['tone_id']}}" width="400" heigh="400"></canvas>
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="divider"></div>
+</div>
+  {% endif %}
+<!-- Js for charts  -->
+<script>
+createCharts({{tones | tojson}});
+</script>
+{% endblock %}
+

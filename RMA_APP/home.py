@@ -4,7 +4,8 @@ from flask import (
 
 
 from RMA_APP.auth import login_required
-from . import reddit, watson
+from . import reddit, watson, azure
+import json
 
 from RMA_APP.db import get_db
 
@@ -49,6 +50,7 @@ def analyze():
             return "Failed to validate"
         # If valid use praw to get the text of all posts and comments
         text_from_reddit = reddit.get_text(subreddit_name)
+
         
         # score init
         anger_score = 0
@@ -89,8 +91,31 @@ def analyze():
                    )
         db.commit()
         # Get Tone Analyzer Results
-        return watson.analyze_tone(text_from_reddit)
+        # return watson.analyze_tone(text_from_reddit)
 
 
         # TODO: Return a template with the tones instead of json dump -Cam
+
+
+        # Get Tone Analysis from IBM Watson
+        watson_analysis = json.loads(watson.analyze_tone(text_from_reddit))
+
+
+
+        # Get Tone Analysis from Microsoft Azure
+        azure_analysis = azure.analyze(text_from_reddit)
+
+        i = 0
+        tones = []
+        for tone in watson_analysis['document_tone']['tones']:
+            tones.append({
+                'tone_id':tone['tone_name'],
+                'score':tone['score']
+            })
+
+
+
+        return render_template("result.html", tones = tones, subreddit_name=subreddit_name)
+
+
 

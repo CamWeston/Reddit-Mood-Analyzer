@@ -12,6 +12,8 @@
   <li> pip install flask </li> 
   <li> pip install praw </li>
   <li> pip install --upgrade "watson-developer-cloud>=2.8.0" </li>
+  <li> pip install --upgrade IPython </li>
+  <li> pip install requests </li>
   <li> if you are getting an error from pip saying "Could not find any downloads that satisfy the requirement your package   No distributions at all found for your package" do the following: </li>
   <ol>
     <li> pip uninstall pip </li>
