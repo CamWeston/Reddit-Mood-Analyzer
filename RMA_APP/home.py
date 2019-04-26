@@ -111,7 +111,7 @@ def analyze():
 
 
 
-        return render_template("result.html", tones = tones, azure_score = azure_score, subreddit_name=subreddit_name)
+        return render_template("result.html", tones = tones, azure_score = azure_score, subreddit_name=subreddit_name, text_analyzed = text_from_reddit)
 
 
 
