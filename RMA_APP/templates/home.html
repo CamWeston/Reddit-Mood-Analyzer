@@ -20,12 +20,16 @@
     </div>
     <div class="col s12 center">
       <span>Sort By:</span>
-       <input name="New" type="radio" checked />
-        <span>New</span>
-       <input name="Hot" type="radio"/>
-        <span>Hot</span>
-       <input name="Top" type="radio"/>
-        <span>Top</span>
+      <label>
+       <input value="New" type="radio" name="subredditSort" id="New" checked >
+        <span for="New">New</span>
+        </label><label>
+       <input value="Hot" type="radio" name="subredditSort" id="Hot" >
+        <span for="Hot">Hot</span>
+        </label><label>
+       <input value="Top" type="radio" name="subredditSort" id="Top" >
+        <span for="Top">Top</span>
+        </label>
     </div>
     <div class ="col s12 center">
       <input class="btn waves-effect waves-light amber darken-4" type ="submit" value="submit" style="margin-top:10px">

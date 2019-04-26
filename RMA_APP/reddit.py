@@ -20,18 +20,22 @@ def validate_subreddit(subreddit_name):
         exists = False
     return exists
 
-def get_text(subreddit_name):
+def get_text(subreddit_name, subreddit_sort):
     all_text = ""
 
     reddit = connect()
     subreddit = reddit.subreddit(subreddit_name)
-
-    submissions = subreddit.new()
+    if subreddit_sort == "New":
+        submissions = subreddit.new()
+    elif subreddit_sort == "Hot":
+        submissions = subreddit.hot()
+    elif subreddit_sort == "Top":
+        submissions = subreddit.top()
 
     for submission in submissions:
         if sys.getsizeof(all_text) < 120000:
             all_text += submission.title
-            
+            submission.comments.replace_more(limit=0)
             for comment in submission.comments:
                 if sys.getsizeof(all_text) < 120000:
                     all_text += comment.body
