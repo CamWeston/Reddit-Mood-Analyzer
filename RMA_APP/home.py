@@ -40,6 +40,8 @@ def analyze():
         subreddit_name = request.form['subredditName']
         # username = login_user()
         
+        subreddit_sort=request.form['subredditSort']
+        
         now = datetime.datetime.now()
         #now = "2019-4-18"
 
@@ -49,7 +51,7 @@ def analyze():
         if not reddit.validate_subreddit(subreddit_name):
             return "Failed to validate"
         # If valid use praw to get the text of all posts and comments
-        text_from_reddit = reddit.get_text(subreddit_name)
+        text_from_reddit = reddit.get_text(subreddit_name, subreddit_sort)
 
         
         # score init
