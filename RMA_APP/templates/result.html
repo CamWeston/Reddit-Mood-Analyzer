@@ -32,7 +32,7 @@
     </div>
   </div>
   <div class="divider"></div>
-  {% if azure_scores|length > 0 %}
+  {% if azure_score|length > 0 %}
   <div class="row">
     <div class="col s12">
       <h4>Microsoft Azure Analysis:</h4>
@@ -45,7 +45,7 @@
   <div class="divider"></div>
   <div class="section">
     <div class="row">
-    {% for score in azure_scores %}
+    {% for score in azure_score %}
       <div class="col s6">
         <canvas class = 'azure-pie-chart' id="{{score['score_id']}}" width="400" heigh="400"></canvas>
       </div>
@@ -60,7 +60,7 @@
 createCharts({{tones | tojson}});
 </script>
 <script>
-createCharts({{azure_scores | tojson}});
+createCharts({{azure_score | tojson}});
 </script>
 {% endblock %}
 

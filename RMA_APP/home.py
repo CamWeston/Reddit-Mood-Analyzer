@@ -34,12 +34,6 @@ def analyze():
         # Get Tone Analysis from IBM Watson
         watson_analysis = json.loads(watson.analyze_tone(text_from_reddit))
 
-
-
-        # Get Tone Analysis from Microsoft Azure
-        azure_analysis = json.loads(azure.analyze(text_from_reddit))
-
-        i = 0
         tones = []
         for tone in watson_analysis['document_tone']['tones']:
             tones.append({
@@ -47,16 +41,12 @@ def analyze():
                 'score':tone['score']
             })
 
-        k = 0
-        azure_scores = []
-        for tone in azure_analysis['documents']:
-            azure_scores.append({
-                'score_id':tone['id'],
-                'score':tone['score']
-            })
+        # Get Tone Analysis from Microsoft Azure
+        azure_analysis = azure.analyze(text_from_reddit)
 
 
 
-        return render_template("result.html", tones = tones, azure_scores = azure_scores, subreddit_name=subreddit_name)
+
+        return render_template("result.html", tones = tones, azure_score = azure_analysis, subreddit_name=subreddit_name)
 
 
