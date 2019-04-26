@@ -32,35 +32,29 @@
     </div>
   </div>
   <div class="divider"></div>
-  {% if azure_score|length > 0 %}
   <div class="row">
     <div class="col s12">
       <h4>Microsoft Azure Analysis:</h4>
     </div>
     <div class="col s12">
-      <blockquote id="ibmBQ">Using IBM Watson, we are able to get the mood of the subreddit. If we detect a strong enough presence of a mood, we are able to show it on a scale of 0 to 1.</blockquote>
+      <blockquote id="microsoftBQ">Using Microsoft Azure, we are able to do a sentiment analysis on the text and indicate on a scale from 0 to 1 if it is negative or positve.</blockquote>
     </div>
 
   </div>
   <div class="divider"></div>
   <div class="section">
+    <h5 class="center">Microsoft thinks that r/{{subreddit_name}} is {{azure_score}}% positive</h5>
     <div class="row">
-    {% for score in azure_score %}
-      <div class="col s6">
-        <canvas class = 'azure-pie-chart' id="{{score['score_id']}}" width="400" heigh="400"></canvas>
-      </div>
-    {% endfor %}
+      <div class="col s1">Bad</div>
+      <div class="col s10"><input type="range" min="0" max="100" class="slider" id="sentimentRange" value="{{azure_score}}"disabled></div>
+      <div class="col s1">Good</div>
     </div>
   </div>
-  {% endif %}
 </div>
   {% endif %}
 <!-- Js for charts  -->
 <script>
-createCharts({{tones | tojson}});
-</script>
-<script>
-createCharts({{azure_score | tojson}});
+createCharts({{tones | tojson}},{{azure_score | tojson}});
 </script>
 {% endblock %}
 

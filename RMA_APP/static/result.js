@@ -1,4 +1,4 @@
-function createCharts(tones){
+function createCharts(tones, asure){
     var charts = Array(tones.length);
     var i, id, ctx, color, toneId;
     var emptyColor = "rgba(0,0,0,.05)";
@@ -69,4 +69,8 @@ function createCharts(tones){
                 duration: 5000,
             });
         }
+
+        var slider = $("#sentimentRange");
+
+
     }

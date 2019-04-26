@@ -95,10 +95,6 @@ def analyze():
         # Get Tone Analyzer Results
         # return watson.analyze_tone(text_from_reddit)
 
-
-        # TODO: Return a template with the tones instead of json dump -Cam
-
-
         # Get Tone Analysis from IBM Watson
         watson_analysis = json.loads(watson.analyze_tone(text_from_reddit))
 
@@ -111,11 +107,11 @@ def analyze():
 
         # Get Tone Analysis from Microsoft Azure
         azure_analysis = azure.analyze(text_from_reddit)
+        azure_score = round(azure_analysis[0]["score"] * 100,2)
 
 
 
-
-        return render_template("result.html", tones = tones, azure_score = azure_analysis, subreddit_name=subreddit_name)
+        return render_template("result.html", tones = tones, azure_score = azure_score, subreddit_name=subreddit_name)
 
 
 
