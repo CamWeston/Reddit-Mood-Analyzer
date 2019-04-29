@@ -31,15 +31,18 @@ def get_text(subreddit_name, subreddit_sort):
         submissions = subreddit.hot()
     elif subreddit_sort == "Top":
         submissions = subreddit.top()
-
+    
     for submission in submissions:
         if sys.getsizeof(all_text) < 120000:
-            all_text += submission.title
+            all_text += submission.title + " "
             submission.comments.replace_more(limit=0)
             for comment in submission.comments:
-                if sys.getsizeof(all_text) < 120000:
-                    all_text += comment.body
+                if not comment.stickied and sys.getsizeof(all_text) < 120000:
+                    all_text += comment.body + " "
+
+    #Buffer text size to prevent azure crashes
+    if len(all_text) < 8000:
+        all_text += " "*(8000-len(all_text))
                     
     return all_text[:120000]
-
 
