@@ -1,3 +1,5 @@
+
+//The code below will create the charts from Chart.js to show the moods from IBM
 function createCharts(tones, asure){
     var charts = Array(tones.length);
     var i, id, ctx, color, toneId;
@@ -70,7 +72,7 @@ function createCharts(tones, asure){
             });
         }
 
-        var slider = $("#sentimentRange");
+
 
 
     }
