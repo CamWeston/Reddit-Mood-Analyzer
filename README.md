@@ -21,10 +21,10 @@
     <li> python get-pip.py </li>
     <li> now you can do all your pip installs </li>
   </ol>
+  <li> export FLASK_APP=RMA_APP </li>
+  <li> export FLASK_ENVIRONMENT=dev  </li>
   <li> we now have to init the database </li> 
   <li> flask init-db </li>
   <li> now you can run your program: </li>
-  <li> export FLASK_APP=RMA_APP </li>
-  <li> export FLASK_ENVIRONMENT=dev  </li>
   <li> flask run </li>
  </ol>
