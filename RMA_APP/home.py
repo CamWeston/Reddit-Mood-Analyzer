@@ -43,17 +43,16 @@ def analyze():
         subreddit_sort=request.form['subredditSort']
         
         now = datetime.datetime.now()
-        #now = "2019-4-18"
 
         db = get_db()
         
         # Check if subreddit is valid
         if not reddit.validate_subreddit(subreddit_name):
             return "Failed to validate"
+        
         # If valid use praw to get the text of all posts and comments
         text_from_reddit = reddit.get_text(subreddit_name, subreddit_sort)
 
-        
         # score init
         anger_score = 0
         fear_score = 0
@@ -92,8 +91,6 @@ def analyze():
                    (username, str(now), str(subreddit_name), anger_score, fear_score, joy_score, sadness_score, analytical_score, confident_score, tentative_score)
                    )
         db.commit()
-        # Get Tone Analyzer Results
-        # return watson.analyze_tone(text_from_reddit)
 
         # Get Tone Analysis from IBM Watson
         watson_analysis = json.loads(watson.analyze_tone(text_from_reddit))
