@@ -1,7 +1,7 @@
 import json
 from watson_developer_cloud import ToneAnalyzerV3
 
-API_KEY = "uLc1SwHKUHMkNikCTgO1shd0I5KbbcoUzmfn_wmLjlFU"
+API_KEY = "Insert your key here"
 URL = "https://gateway.watsonplatform.net/tone-analyzer/api"
 
 # IBM Watson connection. This method is called from home.py
