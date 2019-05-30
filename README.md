@@ -27,4 +27,5 @@
   <li> flask init-db </li>
   <li> now you can run your program: </li>
   <li> flask run </li>
+  <li><bold>Please note: You will need your own api access keys </bold></li>
  </ol>
